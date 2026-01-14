@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { SharedService } from '../shared/service/SharedService';
 import { Constant } from '../shared/constant/Contant';
-import { AuthenticateModel } from './model/authenticateModel';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Title } from '@angular/platform-browser';
 import { CommonFunction } from '../shared/service/CommonFunction';
+import { AuthenticateModel } from './model/AuthenticateModel';
 declare var $: any;
 
 @Component({

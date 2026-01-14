@@ -3,7 +3,7 @@ import { Http , RequestOptions , Response , Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 import { Constant } from '../constant/Contant';
-import { AuthenticateModel } from 'src/app/login/model/authenticateModel';
+import { AuthenticateModel } from 'src/app/login/model/AuthenticateModel';
 
 @Injectable()
 export class SharedService{
