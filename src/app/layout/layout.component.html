@@ -1,0 +1,55 @@
+<main class="Background" *ngIf='ShowLoading'>
+  <div class="loader">
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__ball"></div>
+  </div>    
+</main>
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #SideMenu class="sidenav" fixedInViewport
+  
+        [mode]="'side'"
+        [opened]="ToggleVariable">
+      <mat-toolbar style="background: white;">
+        <img src="assets/img/tepayroll.png" alt="assets.logo.svg">
+      </mat-toolbar>
+      <ul class="unselectable" style="height: 60%;">
+            <li routerLink="employee" [routerLinkActive] = '["ActiveRoute"]' > 
+                Employee
+            </li>
+            <!-- <li routerLink="m3" [routerLinkActive] = '["ActiveRoute"]' > 
+                Operational
+            </li>
+            <li routerLink="nbs" [routerLinkActive] = '["ActiveRoute"]' > 
+                NBS
+            </li>
+            <li routerLink="create-vendor" [routerLinkActive] = '["ActiveRoute"]' > 
+                Vendor
+            </li>
+            <li routerLink="create-ptw-raiser" [routerLinkActive] = '["ActiveRoute"]' > 
+                Raiser
+            </li>
+            <li routerLink="create-supervisor" [routerLinkActive] = '["ActiveRoute"]' > 
+                Supervisor
+            </li> -->
+      </ul>
+      <ul>
+        <li>
+          <button mat-button (click)='Logout()' class="logout-btn">
+          {{empName}} || Logout 
+          <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </li>
+      </ul>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="background: white;min-height: 96%;margin: 10px;border: 1px solid #efe1e1;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

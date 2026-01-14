@@ -1,0 +1,293 @@
+
+<div class="container-fluid" style="padding: 10px">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip color="white" selected (click)="openAnyModal('createEmployeeModal')">Create Employee<mat-icon>add_circle_outline</mat-icon></mat-chip>
+    <mat-chip color="white" selected (click)="workingDays()">Working Days<mat-icon>add_circle_outline</mat-icon></mat-chip>
+    <mat-chip color="white" (click)="exportData()">Export<mat-icon>download</mat-icon> </mat-chip>
+    <mat-chip color="white" (click)="salaryReport()">Salary Report<mat-icon>download</mat-icon> </mat-chip>
+  </mat-chip-list>
+</div>
+
+    <mat-tab-group>
+    
+      <mat-tab label="View Employee">
+        <div class="row" style="margin:0px 0px 10px;overflow:auto;">
+          <div class="col-md-12 table-data-div">
+            <ng2-smart-table [settings]="employeeTableSettings" [source]="employeeList" (custom)="onCustomAction($event)"></ng2-smart-table>
+          </div>
+        </div>
+      </mat-tab>
+  
+    </mat-tab-group>
+
+    <div id="createEmployeeModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+          <div class="modal-header" style="padding: 10px !important;">
+            <h4 class="modal-title">{{srNo}}</h4>
+            <button type="button" class="btn  btn-sm text-white" [ngStyle]="{'background-color':button}" (click)="closeAnyModal('createEmployeeModal')">Close</button>
+          </div>
+          <div class="modal-body det-modal-body">
+            <div class="row" >
+              <div class="col-md-12">
+                <label class="text-bold ">! All * fields are Mandatory.</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label class="text-bold ">UAN NO <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="uanNo">
+              </div>
+              <div class="col-md-4">
+                <label class="text-bold ">EPF NO. <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="epfNo">
+              </div>
+              <div class="col-md-4">
+                <label class="text-bold ">ESI NO <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="esiNo">
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">Bank_Name <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="bankName">
+              </div>
+      
+              <div class="col-md-4">
+                <label class="text-bold ">IFSC CODE <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="ifscCode">
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">ACCOUNT NO <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="accountNo">
+              </div>
+           
+              <div class="col-md-4">
+                <label class="text-bold ">Catogory Code <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="catogoryCode" [readonly]="srNo !=''">
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">Name of contract Labour <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="name">
+              </div>
+              <div class="col-md-4">
+                <label class="text-bold ">FATHERS NAME <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="fatherName">
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">Category <span>*</span> </label>
+                <select class="form-control input-sm tom-border-radius" [(ngModel)]="category">
+                  <option value="">Select</option>
+                  <option value="Un Skilled">Un Skilled</option>
+                  <option value="Semi Skilled">Semi Skilled</option>
+                  <option value="Skilled">Skilled</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="text-bold ">Deptt <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="deptt">
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">DOB <span>*</span> </label>
+                <input type="date" class="form-control input-sm tom-border-radius" [(ngModel)]="dob">
+              </div>
+              <div class="col-md-4">
+                <label class="text-bold ">DOJ <span>*</span> </label>
+                <input type="date" class="form-control input-sm tom-border-radius" [(ngModel)]="doj">
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">Basic wages <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="basicWages" OnlyNumber="true">
+              </div>
+              <div class="col-md-4">
+                <label class="text-bold ">HRA <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="hra" OnlyNumber="true" >
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">CONVEYANCE <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="conveyance" OnlyNumber="true">
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">Medical Allowance <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="mediAll" OnlyNumber="true" >
+              </div>
+
+              <div class="col-md-4">
+                <label class="text-bold ">Arrier <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="arries" OnlyNumber="true">
+              </div>
+              <div class="col-md-4">
+                <label class="text-bold ">SPL ALLOWENCE <span>*</span> </label>
+                <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="splAll" OnlyNumber="true">
+              </div>
+
+              
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <label style="color: transparent;display: block">filter</label>
+                <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="submitEmployeeData()">
+                  <span *ngIf="srNo ==''">Submit</span>
+                  <span *ngIf="srNo !=''">Save</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="workingDaysModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+          <div class="modal-header" style="padding: 10px !important;">
+            <h4 class="modal-title"></h4>
+            <button type="button" class="btn  btn-sm text-white" [ngStyle]="{'background-color':button}" (click)="closeAnyModal('workingDaysModal')">Close</button>
+          </div>
+          <div class="modal-body det-modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="text-bold ">Month Year <span>*</span> </label>
+                <select class="form-control input-sm tom-border-radius monthYear" [(ngModel)]="monthYear" (change)="getMonthDays()">
+                  <option value="">Select</option>
+                  <option [value]="ml" *ngFor="let ml of monthList">{{ml}}</option>
+                </select>
+              </div>
+              <div class="col-md-12">
+                <table class="table table-bordered myTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 150px;">Catogory Code</th>
+                      <th style="width: 150px;">Name</th>
+                      <th>Working Days</th>
+                      <th>No of Attendance</th>
+                      <!-- <th></th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let wd of workingDaysTable">
+                      <td>{{wd.catogoryCode}}</td>
+                      <td>{{wd.name}}</td>
+                      <td>
+                        <input type="text" class="form-control input-sm tom-border-radius wd wd{{wd.srNo}}" 
+                        OnlyNumber="true" placeholder="Working Days" readonly />
+                      </td>
+                      <td>
+                        <input type="text" class="form-control input-sm tom-border-radius noa{{wd.srNo}}" 
+                        OnlyNumber="true" placeholder="No of Attendance" />
+                      </td>
+                      <!-- <td>
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="submitWorkingDays(wd)">Submit</button>
+                      </td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="submitWorkingData()">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="salaryModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+          <div class="modal-header" style="padding: 10px !important;">
+            <h4 class="modal-title"></h4>
+            <button type="button" class="btn  btn-sm text-white" [ngStyle]="{'background-color':button}" (click)="closeAnyModal('salaryModal')">Close</button>
+          </div>
+          <div class="modal-body det-modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="text-bold ">Month Year <span>*</span> </label>
+                <select class="form-control input-sm tom-border-radius monthYear2" [(ngModel)]="monthYear" (change)="getMonthDays()">
+                  <option value="">Select</option>
+                  <option [value]="ml" *ngFor="let ml of monthList">{{ml}}</option>
+                </select>
+              </div>
+              <div class="col-md-12">
+                <table class="table table-bordered myTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 150px;">Catogory Code</th>
+                      <th style="width: 150px;">Name</th>
+                      <th>Working Days</th>
+                      <th>No of Attendance</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{empObj.catogoryCode}}</td>
+                      <td>{{empObj.name}}</td>
+                      <td>
+                        <input type="text" class="form-control input-sm tom-border-radius wd wd{{empObj.srNo}}" 
+                        OnlyNumber="true" placeholder="Working Days" readonly />
+                      </td>
+                      <td>
+                        <input type="text" class="form-control input-sm tom-border-radius noa{{empObj.srNo}}" 
+                        OnlyNumber="true" placeholder="No of Attendance" />
+                      </td>
+                      <td>
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="submitWorkingDays(empObj)">Submit</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-bordered myTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 150px;">Catogory Code</th>
+                      <th style="width: 150px;">Month Year</th>
+                      <th>Working Days</th>
+                      <th>No of Attendance</th>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let sl of salaryList">
+                      <td>{{sl.catogoryCode}}</td>
+                      <td>{{sl.monthYear}}</td>
+                      <td>{{sl.workingDays}}</td>
+                      <td>{{sl.noOfAttendance}}</td>
+                      <td>
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="generateSalaryPdf(sl)">Generate Slip</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row" *ngIf="salaryList.length == 0">
+              <div class="col-md-12">
+                <h4><i class="text-warning">! No Record found</i></h4>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+      

@@ -1,0 +1,59 @@
+<main class="Background" *ngIf='ShowLoading'>
+    <div class="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+    </div>    
+</main>
+
+<div id="container">
+  <div id="form-container">
+    <div class="FormContainer">
+        
+        <div class="FormHeading"> 
+            <img src="assets/img/tepayroll.png" class="company-logo"/>
+         </div>
+
+        <div class="MainForm smootheffect">
+            <form #LoginForm = "ngForm" (ngSubmit)='OnSubmitting()'>
+                <div class="FormInputFields">
+                    <h2>Hi</h2>
+                    <h2>Welcome Back !</h2>
+
+
+                    <mat-form-field appearance="legacy" color="primary" hideRequiredMarker>
+                        <mat-label>Mobile</mat-label>
+                        <input [(ngModel)]="loginModel.mobile" name="mobile" matInput placeholder="Mobile" required #uname='ngModel'>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="legacy" color="primary" hideRequiredMarker>
+                        <mat-label>Password</mat-label>
+                        <input [(ngModel)]="loginModel.password" name="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Enter Password" required #pass='ngModel'>
+                        <i mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon class="text-bold" style="font-size: 100% !important;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </i>
+                    </mat-form-field>
+    
+                    <mat-error *ngIf="invalid">
+                        INVALID <strong>Username</strong> or <strong>Password</strong>
+                    </mat-error>
+                    
+                    <div style="text-align: end;">
+                        <button mat-raised-button [disabled]='LoginForm.form.invalid' [class.Activebutton]='!LoginForm.form.invalid'>
+                            Login
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+
+    </div>
+  </div>
+</div>
+  
