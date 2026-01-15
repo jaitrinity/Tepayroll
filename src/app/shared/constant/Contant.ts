@@ -1,8 +1,8 @@
 export class Constant{
 
     // PROD
-    // public static phpServiceURL = "/Tepayroll/";
-    public static phpServiceURL = "http://localhost/Tepayroll/";
+    public static phpServiceURL = "/Tepayroll/";
+    // public static phpServiceURL = "http://localhost/Tepayroll/";
     
     public static SUCCESSFUL_STATUS_CODE = 200;
     public static GENERIC_DATABASE_ERROR = "-102003";
