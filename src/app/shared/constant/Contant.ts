@@ -1,7 +1,7 @@
 export class Constant{
 
     // PROD
-    public static phpServiceURL = "http://13.205.199.109/Tepayroll/";
+    public static phpServiceURL = "http://43.204.109.206/Tepayroll/";
     // public static phpServiceURL = "http://localhost/Tepayroll/";
     
     public static SUCCESSFUL_STATUS_CODE = 200;
